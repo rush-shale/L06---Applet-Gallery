@@ -55,6 +55,19 @@
         <h3>Click Button Event</h3>
         <button class="btn btn-primary" onclick="showAlert()">Display Alert</button>
     </div>
+    <script>
+      //Event Function 1
+function updateDisplay() {
+    var textbox = document.getElementById('textbox');
+    var displayText = document.getElementById('displayText');
+    displayText.textContent = textbox.value;
+}
+
+function showAlert() {
+    var textbox = document.getElementById('textbox');
+    alert("Hello " + textbox.value);
+}
+    </script>
 <script src="applet-1.js"></script>
 </body>
 
