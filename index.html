@@ -58,7 +58,6 @@
               <li><a class="dropdown-item" href="./applet-2/">Applet 2</a></li>
               <li><a class="dropdown-item" href="./applet-3/">Applet 3</a></li>
               <li><a class="dropdown-item" href="./applet-4/">Applet 4</a></li>
-              <li><a class="dropdown-item" href="./applet-5/">Applet 5</a></li>
             </ul>
           </li>
           <li class="nav-item">
@@ -77,7 +76,17 @@
 
     <h1 class="title" >Event Driven Programming Library</h1>
       <div class="applet-flex-container"  id="applet-container"></div>
-
+         <!--Applet 1 Card-->
+         <div class="applet-container">
+          <h3>Type input event</h3>
+          <h1 id="displayText">your text will appear here</h1>
+          <input type="text" id="textbox" placeholder="Type something here..." oninput="updateDisplay()">
+          <br>
+          <br>
+      
+          <h3>Click Button Event</h3>
+          <button class="btn btn-primary" onclick="showAlert()">Display Alert</button>
+      </div>
 <script src="applets.js"></script>
 </body>
 </html>
