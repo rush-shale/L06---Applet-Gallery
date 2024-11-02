@@ -8,18 +8,8 @@ class WeatherApp {
 
     init() {
         document.getElementById('getWeather').addEventListener('click', () => {
-            const city = this.cityInput.value.trim();
-            const apiKey = this.apiKeyInput.value.trim();
-            
-            // Validate inputs
-            if (!city) {
-                alert('Please enter a city name.');
-                return;
-            }
-            if (!apiKey) {
-                alert('Please enter your API key.');
-                return;
-            }
+            const city = this.cityInput.value;
+            const apiKey = this.apiKeyInput.value; // Get the API key from input
             this.fetchWeather(city, apiKey);
         });
     }
@@ -29,7 +19,7 @@ class WeatherApp {
         try {
             const response = await fetch(url);
             if (!response.ok) {
-                throw new Error('City not found or invalid API key');
+                throw new Error('City not found');
             }
             const data = await response.json();
             this.displayWeather(data);
@@ -39,10 +29,9 @@ class WeatherApp {
     }
 
     displayWeather(data) {
-        this.resultsContainer.innerHTML = '';
-        const daysToDisplay = 7;
+        this.resultsContainer.innerHTML = ''; 
+        const daysToDisplay = 7; 
         const groupedData = {};
-
         data.list.forEach(item => {
             const date = new Date(item.dt * 1000).toLocaleDateString();
             if (!groupedData[date]) {
@@ -50,20 +39,17 @@ class WeatherApp {
             }
             groupedData[date].push(item);
         });
-
         const dates = Object.keys(groupedData).slice(0, daysToDisplay);
         const getDayName = (dateString) => {
             const options = { weekday: 'long' };
             return new Date(dateString).toLocaleDateString(undefined, options);
         };
-
         dates.forEach(date => {
             const items = groupedData[date];
             const icon = items[0].weather[0].icon;
             const iconUrl = `https://openweathermap.org/img/wn/${icon}@2x.png`;
             const avgTemp = items.reduce((sum, item) => sum + item.main.temp, 0) / items.length;
             const dayName = getDayName(date);
-
             const card = `
                 <div class="col-md-6 weather-card">
                     <div class="card">
